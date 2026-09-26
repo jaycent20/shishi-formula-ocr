@@ -2,6 +2,10 @@
 
 # 公式贴
 
+[![累计下载次数](https://img.shields.io/github/downloads/jaycent20/shishi-formula-ocr/total?label=%E7%B4%AF%E8%AE%A1%E4%B8%8B%E8%BD%BD&color=087f75&style=flat-square)](https://github.com/jaycent20/shishi-formula-ocr/releases)
+
+<sub>统计公开 Releases 全部附件的累计下载次数（含安装包、校验文件和说明文件），不是独立用户或安装人数；徽章自动更新，可能有缓存延迟。</sub>
+
 **截图变公式，一贴就好。**
 
 **Windows 桌面版 · 本地离线识别 · LaTeX / MathML · 可视化编辑**
