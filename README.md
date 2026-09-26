@@ -4,7 +4,7 @@
 
 [![安装包累计下载](stats/downloads.svg)](https://github.com/jaycent20/shishi-formula-ocr/releases)
 
-<sub>仅统计本仓库历次公开 Releases 中 .exe 安装包的累计下载次数，排除校验文件和说明文件；不是去重人数或安装人数。发布新版时更新，并每 6 小时自动检查，显示可能有缓存延迟。</sub>
+<sub>统计本仓库历次公开 Releases 中 .exe 安装包的累计下载次数，发布新版时更新，并每 6 小时自动检查，显示可能有缓存延迟。</sub>
 
 **截图变公式，一贴就好。**
 
