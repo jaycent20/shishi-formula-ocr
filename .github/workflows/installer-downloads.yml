@@ -1,0 +1,65 @@
+name: Update installer download count
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: installer-download-count
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Count public EXE downloads and render badge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          pages = json.loads(subprocess.check_output([
+              'gh', 'api', '--paginate', '--slurp',
+              f"repos/{os.environ['GH_REPO']}/releases?per_page=100"
+          ], text=True, encoding='utf-8'))
+          versions = []
+          for release in [r for page in pages for r in page]:
+              if release['draft']:
+                  continue
+              installers = [a for a in release['assets'] if a['name'].lower().endswith('.exe')]
+              if installers:
+                  versions.append({'version': release['tag_name'], 'downloads': sum(a['download_count'] for a in installers)})
+          total = sum(v['downloads'] for v in versions)
+          folder = Path('stats')
+          folder.mkdir(exist_ok=True)
+          (folder / 'downloads.json').write_text(json.dumps({'total': total, 'versions': versions}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          value_width = max(44, len(str(total)) * 9 + 20)
+          width = 150 + value_width
+          badge = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="24" role="img" aria-label="安装包累计下载：{total}">
+          <title>安装包累计下载：{total}</title>
+          <rect width="150" height="24" fill="#475569"/>
+          <rect x="150" width="{value_width}" height="24" fill="#087f75"/>
+          <g fill="white" text-anchor="middle" font-family="Arial,Microsoft YaHei,sans-serif" font-size="12">
+          <text x="75" y="16">安装包累计下载</text><text x="{150 + value_width / 2}" y="16">{total}</text>
+          </g></svg>'''
+          (folder / 'downloads.svg').write_text(badge + '\n', encoding='utf-8')
+          print(f'EXE downloads across {len(versions)} releases: {total}')
+          PY
+      - name: Save changed counts
+        shell: bash
+        run: |
+          git add stats/downloads.json stats/downloads.svg
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: refresh installer download statistics'
+          git pull --rebase origin main
+          git push origin HEAD:main
