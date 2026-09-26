@@ -6,7 +6,7 @@
 
 面向论文与教材的 Windows 公式识别工具。粘贴截图，核对公式，复制 LaTeX 或 MathML，继续在 MathType 中编辑。
 
-[下载 Windows 安装包](https://github.com/jaycent20/shishi-formula-ocr/releases/latest) · [更新日志](CHANGELOG.md) · [反馈问题](https://github.com/jaycent20/shishi-formula-ocr/issues)
+[下载 Windows 安装包](https://github.com/jaycent20/shishi-formula-ocr/releases/latest) · [更新日志](CHANGELOG.md) · [提建议 / 报问题](https://github.com/jaycent20/shishi-formula-ocr/issues/new/choose)
 
 > 本仓库只分发桌面安装包、截图与使用说明，不提供新版项目源码。无需下载仓库或运行安装脚本。
 
@@ -52,6 +52,22 @@
 - MathType 桌面版：在公式编辑窗口粘贴 LaTeX；若目标版本不支持，可尝试其 MathML 导入方式。
 - Word MathType Add-in：使用 Open LaTeX / Open MathML 导入入口。
 - 默认复制按钮输出公式正文，不附美元符号。不同版本兼容性不同，导入后仍需核对。
+
+## 有建议或遇到问题？
+
+欢迎告诉我你的使用体验。功能建议、界面改进、公式识别错误和安装问题，都可以在这里提交：
+
+**[💡 提交功能建议](https://github.com/jaycent20/shishi-formula-ocr/issues/new?template=feature_request.md)** · **[🐛 反馈使用问题](https://github.com/jaycent20/shishi-formula-ocr/issues/new?template=bug_report.md)** · [查看已有反馈](https://github.com/jaycent20/shishi-formula-ocr/issues)
+
+1. 登录 GitHub 账号，先看看是否已有相同反馈；已有的话可以补充说明或点赞。
+2. 选择“功能建议”或“问题反馈”，按模板填写，点击 **Submit new issue** 提交。
+3. 后续可以在同一个 Issue 查看回复、补充信息和跟进处理进度。想继续接收回复，可订阅该 Issue 的通知。
+
+**建议怎么写？** 说明你在什么场景下使用、遇到什么不便，以及希望软件怎么改。
+
+**识别错误怎么报？** 请附软件版本、Windows / MathType 版本（如相关）、复现步骤、错误输出，以及你认为正确的公式。截图尽量只保留必要的公式区域。
+
+反馈会公开显示，**请勿上传 API 密钥、账号信息、未公开论文或含私人信息的完整截图**。当前仅通过 GitHub Issues 收集反馈，需要 GitHub 账号。提交不代表一定采纳，也不承诺具体完成时间。
 
 ## 隐私与发布方式
 
